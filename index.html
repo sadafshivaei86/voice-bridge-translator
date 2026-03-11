@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="background-glow"></div>
-    
+
     <main class="app-container">
         <header>
             <div class="logo">
@@ -29,17 +33,29 @@
                 </label>
                 <span class="lang-label" id="lang-to">Finnish</span>
             </div>
-            
+
             <button id="record-btn" class="record-btn">
                 <div class="pulse-ring"></div>
                 <svg class="mic-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
                 </svg>
                 <span id="record-status">Start Listening</span>
             </button>
+        </section>
+
+        <section class="video-section">
+            <div class="video-container">
+                <video id="video-feed" autoplay playsinline muted></video>
+                <div class="subtitle-overlay" id="subtitle-overlay">
+                    <span id="subtitle-text">Translation will appear here...</span>
+                </div>
+            </div>
         </section>
 
         <section class="display-area">
@@ -66,4 +82,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

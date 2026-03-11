@@ -39,9 +39,9 @@ body {
 }
 
 .app-container {
-    width: 90%;
-    max-width: 800px;
-    padding: 2rem;
+    width: 95%;
+    max-width: 900px;
+    padding: 1.5rem;
     background: var(--card-bg);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
@@ -233,6 +233,67 @@ input:checked+.slider:before {
     100% {
         transform: translate(-50%, -50%) scale(1.4);
         opacity: 0;
+    }
+}
+
+/* Video Section */
+.video-section {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#video-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    /* Mirror effect */
+}
+
+.subtitle-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    min-height: 100px;
+}
+
+#subtitle-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

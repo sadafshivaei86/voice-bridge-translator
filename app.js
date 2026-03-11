@@ -2,12 +2,28 @@ const recordBtn = document.getElementById('record-btn');
 const recordStatus = document.getElementById('record-status');
 const transcriptionArea = document.getElementById('transcription');
 const translationArea = document.getElementById('translation');
+const subtitleText = document.getElementById('subtitle-text');
 const langToggle = document.getElementById('lang-toggle');
 const langFromLabel = document.getElementById('lang-from');
 const langToLabel = document.getElementById('lang-to');
+const videoFeed = document.getElementById('video-feed');
 
 let isListening = false;
 let recognition;
+let stream;
+
+// Initialize Camera
+async function initCamera() {
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        videoFeed.srcObject = stream;
+    } catch (error) {
+        console.error('Camera Access Error:', error);
+        subtitleText.textContent = 'Camera access denied. Video feed disabled.';
+    }
+}
+
+initCamera();
 
 // Initialize Speech Recognition
 if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -66,14 +82,22 @@ async function translateText(text) {
     translationArea.textContent = 'Translating...';
 
     try {
-        // Using MyMemory API (Free public translation API)
         const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
         const data = await response.json();
 
         if (data.responseData) {
-            translationArea.textContent = data.responseData.translatedText;
+            const translated = data.responseData.translatedText;
+            translationArea.textContent = translated;
+            subtitleText.textContent = translated;
+
+            // Clear subtitle after 5 seconds of inactivity
+            setTimeout(() => {
+                if (subtitleText.textContent === translated) {
+                    subtitleText.textContent = '';
+                }
+            }, 5000);
         } else {
-            translationArea.textContent = 'Translation failed. Try again.';
+            translationArea.textContent = 'Translation failed.';
         }
     } catch (error) {
         console.error('Translation Error:', error);
@@ -89,7 +113,7 @@ function startListening() {
 }
 
 function stopListening() {
-    recognition.stop();
+    if (recognition) recognition.stop();
 }
 
 recordBtn.addEventListener('click', () => {
@@ -112,11 +136,12 @@ langToggle.addEventListener('change', () => {
         langFromLabel.classList.remove('active');
         langToLabel.classList.add('active');
     }
-    
+
     // Clear display on switch
     transcriptionArea.textContent = 'Waiting for voice input...';
     translationArea.textContent = 'Translation will appear here...';
-    
+    subtitleText.textContent = 'Waiting for speech...';
+
     if (isListening) {
         stopListening();
     }
