@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceBridge | Real-Time Translator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <main class="app-container">
+        <header>
+            <div class="logo">
+                <h1>Voice<span>Bridge</span></h1>
+                <p>Seamless Real-Time Translation</p>
+            </div>
+        </header>
+
+        <section class="controls">
+            <div class="toggle-wrapper">
+                <span class="lang-label" id="lang-from">English</span>
+                <label class="switch">
+                    <input type="checkbox" id="lang-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="lang-label" id="lang-to">Finnish</span>
+            </div>
+            
+            <button id="record-btn" class="record-btn">
+                <div class="pulse-ring"></div>
+                <svg class="mic-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span id="record-status">Start Listening</span>
+            </button>
+        </section>
+
+        <section class="display-area">
+            <div class="card transcribed-card">
+                <div class="card-header">
+                    <span class="dot"></span>
+                    <h3>Original Text</h3>
+                </div>
+                <div class="text-content" id="transcription">Waiting for voice input...</div>
+            </div>
+
+            <div class="card translated-card">
+                <div class="card-headerHighlight">
+                    <h3>Translation</h3>
+                </div>
+                <div class="text-content" id="translation">Translation will appear here...</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Powered by Web Speech API & Real-Time Neural Translation</p>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
